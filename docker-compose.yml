@@ -1,20 +1,16 @@
 version: '3.9'
 
 services:
-
   fsm_bot:
-        container_name: FsmBot
-        image: fsm_bot
-
-        build: .
-
-        environment:
-            - DEBUG=1
-
-        volumes:
-         - "/fsm_bot_data"
-
-        # restart: on-failure
+    container_name: FsmBot
+    image: fsm_bot
+    build: .
+    env_file:
+      - .env  # Ensure this file exists in the same directory and contains BOT_TOKEN
+    volumes:
+      - logs:/path/inside/container
+    # restart: on-failure
 
 volumes:
   logs:
+
